@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day Plan — To-Do List</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Our stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <main class="app">
+
+    <!-- ===== Header ===== -->
+    <header class="app__header">
+      <h1 class="app__title">Day Plan</h1>
+      <p class="app__date" id="todayDate">&nbsp;</p>
+    </header>
+
+    <!-- ===== Add a new task ===== -->
+    <div class="composer">
+      <input
+        type="text"
+        id="taskInput"
+        class="composer__input"
+        placeholder="What needs doing?"
+        maxlength="120"
+        autocomplete="off"
+      />
+      <button type="button" id="addButton" class="composer__button">Add task</button>
+    </div>
+
+    <p class="composer__error" id="errorMessage"></p>
+
+    <!-- ===== Filters ===== -->
+    <div class="filters" id="filters">
+      <button type="button" class="filters__item is-active" data-filter="all">All</button>
+      <button type="button" class="filters__item" data-filter="active">To do</button>
+      <button type="button" class="filters__item" data-filter="done">Done</button>
+    </div>
+
+    <!-- ===== Task list ===== -->
+    <ul class="tasks" id="taskList"></ul>
+
+    <!-- ===== Empty state ===== -->
+    <p class="empty" id="emptyState">Nothing here yet. Add your first task above.</p>
+
+    <!-- ===== Footer summary ===== -->
+    <footer class="app__footer">
+      <span id="counter">0 of 0 done</span>
+      <button type="button" id="clearDone" class="app__clear">Clear completed</button>
+    </footer>
+
+  </main>
+
+  <!-- Our JavaScript: logic.js must load first -->
+  <script src="logic.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
