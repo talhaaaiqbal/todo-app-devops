@@ -6,7 +6,7 @@
    ========================================================== */
 
 // ----- Grab the elements we need from the page -----
-var taskInput    = document.getElementById("taskInput");
+var taskInput    = document.getElementById("taskInput";
 var addButton    = document.getElementById("addButton");
 var taskList     = document.getElementById("taskList");
 var errorMessage = document.getElementById("errorMessage");
