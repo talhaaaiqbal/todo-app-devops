@@ -1,0 +1,47 @@
+name: CI
+
+# Run automatically on every push to main, and on pull requests to main
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    name: Build and test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get the code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Check that all required files exist
+        run: |
+          for file in index.html style.css script.js logic.js tests.js; do
+            if [ ! -f "$file" ]; then
+              echo "Missing required file: $file"
+              exit 1
+            fi
+            echo "Found $file"
+          done
+
+      - name: Check JavaScript for syntax errors
+        run: node --check script.js
+
+      - name: Check HTML links to the CSS and JS files
+        run: |
+          grep -q 'style.css' index.html || { echo "index.html does not link style.css"; exit 1; }
+          grep -q 'script.js' index.html || { echo "index.html does not link script.js"; exit 1; }
+          echo "index.html links both files correctly"
+
+      - name: Run application tests
+        run: node tests.js
+
+      - name: All checks passed
+        run: echo "Build and tests completed successfully."
