@@ -1,0 +1,255 @@
+/* ==========================================================
+   Day Plan — stylesheet
+   Colours are kept in one place so they are easy to change.
+   ========================================================== */
+
+:root {
+  --ink:        #16233a;   /* main text / dark background */
+  --ink-soft:   #5a6780;   /* secondary text */
+  --paper:      #f7f6f2;   /* page background */
+  --card:       #ffffff;   /* card background */
+  --line:       #e3e1da;   /* borders */
+  --highlight:  #ffd84d;   /* yellow highlighter accent */
+  --done:       #8a93a5;   /* completed task text */
+  --danger:     #b23a3a;   /* error text */
+
+  --radius: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 40px 20px 60px;
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* ---------- Layout ---------- */
+
+.app {
+  max-width: 560px;
+  margin: 0 auto;
+  background-color: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 32px;
+}
+
+/* ---------- Header ---------- */
+
+.app__header {
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 18px;
+  margin-bottom: 24px;
+}
+
+.app__title {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: 44px;
+  font-weight: 400;
+  line-height: 1;
+  margin: 0;
+  /* the highlighter stripe behind the title */
+  background-image: linear-gradient(var(--highlight), var(--highlight));
+  background-repeat: no-repeat;
+  background-size: 100% 14px;
+  background-position: 0 78%;
+  display: inline;
+}
+
+.app__date {
+  color: var(--ink-soft);
+  font-size: 14px;
+  margin: 10px 0 0;
+}
+
+/* ---------- Add task box ---------- */
+
+.composer {
+  display: flex;
+  gap: 10px;
+}
+
+.composer__input {
+  flex: 1;
+  padding: 12px 14px;
+  font-family: inherit;
+  font-size: 16px;
+  color: var(--ink);
+  background-color: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.composer__input:focus {
+  outline: 2px solid var(--ink);
+  outline-offset: 1px;
+}
+
+.composer__button {
+  padding: 12px 18px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  color: #ffffff;
+  background-color: var(--ink);
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.composer__button:hover {
+  background-color: #24344f;
+}
+
+.composer__error {
+  color: var(--danger);
+  font-size: 14px;
+  min-height: 20px;
+  margin: 8px 0 0;
+}
+
+/* ---------- Filters ---------- */
+
+.filters {
+  display: flex;
+  gap: 6px;
+  margin: 8px 0 20px;
+}
+
+.filters__item {
+  padding: 6px 12px;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--ink-soft);
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.filters__item:hover {
+  border-color: var(--line);
+}
+
+.filters__item.is-active {
+  color: var(--ink);
+  font-weight: 600;
+  background-color: var(--paper);
+  border-color: var(--line);
+}
+
+/* ---------- Task list ---------- */
+
+.tasks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 4px;
+  border-bottom: 1px solid var(--line);
+}
+
+.task__check {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--ink);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.task__text {
+  flex: 1;
+  word-break: break-word;
+}
+
+.task.is-done .task__text {
+  color: var(--done);
+  text-decoration: line-through;
+}
+
+.task__delete {
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--ink-soft);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 6px;
+}
+
+.task__delete:hover {
+  color: var(--danger);
+}
+
+/* ---------- Empty state ---------- */
+
+.empty {
+  color: var(--ink-soft);
+  text-align: center;
+  padding: 28px 0;
+  margin: 0;
+}
+
+.empty.is-hidden {
+  display: none;
+}
+
+/* ---------- Footer ---------- */
+
+.app__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 22px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+
+.app__clear {
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--ink-soft);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.app__clear:hover {
+  color: var(--danger);
+}
+
+/* ---------- Small screens ---------- */
+
+@media (max-width: 480px) {
+  body {
+    padding: 20px 12px 40px;
+  }
+
+  .app {
+    padding: 22px 18px;
+  }
+
+  .app__title {
+    font-size: 36px;
+  }
+
+  .composer {
+    flex-direction: column;
+  }
+}
